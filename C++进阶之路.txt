@@ -1,0 +1,165 @@
+C++进阶之路
+2015年05月07日 15:24:29 xingpacer 阅读数：1276
+语言基础入门：
+
+C++ Primer 《C++入门》（通常不用中文名）
+
+by Stanley B. Lippman
+
+有第三版和第四版，如其名，是C++入门的不二选择，是全面广泛的参考书目，内容丰富，笔触严谨。 如果说Bjarne Stroustrup是C++之父的话，那么Lippman可以说是C++之母了:)
+
+The C++ Programming Language 《C++程序设计语言》
+
+by Bjarne Stroustrup
+
+有第三版特别版，刚刚为一个朋友买了一本，不用说了 Bjarne Stroustrup写的，权威之作，可以说与C++ Primer是同等广博的“圣经”级别的参考书。
+
+Essential C++ 《C++基础》
+
+by Stanley B. Lippman
+
+同样是入门的基础，也是由Stanley B. Lippman执笔的作品，研究语法，语意再好不过的了。
+
+进阶A，经验与惯用法：
+
+ Effective C++ , More Effective C++
+
+by Scott Meyers
+
+这几本我认为应当归在一起介绍，老实说这些条款是开发项目以及平时学习中不可缺少的Golden Tips，反复阅读，你会发现这些条款实在是再深刻不过的了。
+
+简称EC。C++程序员必读！很多时候，我们说C++圣经不是指TC++PL，而是这一本。《The Pragmatic Programmer》一书中写到：“一旦你发现自己要参与C++项目的开发，赶快跑（不要走）到书店去购买Scott Mayer的《Effective C++》，可能还要《More Effective C++》”。
+
+Exceptional C++ , More Exceptional C++ , Exceptional C++ Style
+
+by Herb Sutter
+
+这三本也是该归在一起的，Herb Sutter是C++标准委员会的老大，现在人在微软，他的书当然也是相当具有启发意义的。
+
+C++ Coding Standards: 101 Rules, Guidelines, and Best Practices 《C++ 编程规范》
+
+by Herb Sutter and Andrei Alexandrescu
+
+这本最近又看了一遍也是感到尤其深刻，案头书的描述再好不过了，里面丰富的名言，丰富的内涵，以及每次重复阅读都能有新的发现，哎，不称之为经典也不幸哎！
+
+进阶B，STL与范型(GP):
+
+作为标准库的一部分，STL已经深入我们的开发生活，vector,list,deque,set,map等等都是我们首选的容器，iterator的机制已经无可厚非地被接受，STL引入的范型也给我们打开了一闪窗。
+
+The C++ Standard Library 《C++标准程序库—自修教程与参考手册》
+
+A Tutorial and Reference by Nicolai M.Josuttis,
+
+STL怎么用？看看本书吧。Nicolai M.Josuttis好像也是C++标准委员会的成员，也是C++ Template的作者。
+
+Effective STL
+
+简单的使用后的提升。会使用STL还不够，还必须知道什么时候选择什么STL组件，这是STL使用的必读书。
+
+Generic Programming and the STL: Using and Extending the C++ Standard Template Libra 《泛型编程与STL》。
+
+Using and Extending the C++ Standard Template library by Matthew H.Austern
+
+书的副标题很谦虚，似乎说本书只是使用和扩展，其实本书可谓GP理论入门的必读，STL的内涵与设计都可以看到。这本书理论性较强，但是真的很严谨，而且并不是非常难懂。理解其中对于Concept的解释，将是非常重要的。
+
+C++ Standard Template Library 《C++ STL》
+
+by P.J.Plauger,Alexander A.Stepanov, Meng Lee,David R.Musser
+
+两位STL库的设计人员P.J.Plauger和Meng Lee，讲述STL实现的原理。这不是讲述使用程序库的，而是讲述程序库实现原理的。肠胃不好的，需要慢慢吸收。
+C++ Template 《C++模板》
+
+by David Vandevoorde, Nicolai M. Josuttis
+
+本书可谓全面介绍了模板的使用细则，但介绍的细节不是很细致，归类不如C++ Primer，当然模板的基本用法都可以看到。 在阅读STL、Boost或者Loki的源代码之前，请仔细阅读本书，它可以减轻一些阅读的烦恼。这本书是讨论C++模板的权威。
+
+C++ Template Metaprogramming : Concepts, Tools, and Techniques from Boost and Beyond
+
+by David Abrahams and Aleksey Gurtovoy
+
+本书没有看到中文版，也是一本介绍模板元编程的专业参考书，十分细致地讲述了高级的模板技术，只是本书只有英文版的。
+
+ 
+
+C++进阶之路（二）
+再进阶A，底层机制：
+
+The Annotated C++ Reference Manual
+
+by Margaret A.Ellis and Bjarne Stroustrup
+
+标准库的全面解析，BS老大为标准库量身定做的很OFFICAL的参考。 简称：ARM
+
+Inside the C++ Object Model 《深度探索C++物件模型》
+
+by Stanley Lippman
+
+即使反复学习了进阶A，依然有许多语言实现方面的Puzzle问题，尤其是虚继承，临时对象等令人麻烦的深层问题值得学习，Lippman以一位专家的身份给了我们一个深窥语言内部的可能，Lippman的书都有C和底层实现的影子。
+
+再进阶B，设计模式：
+
+15. Design Patterns - Elements of Reusable Object Oriented Software 《设计模式》
+
+by Erich Gamma,Richard Helm,Ralph Johnson,and John Vlissides
+
+GoF听说过吗？Gang of Four（四人帮:)就是说的本文的四位作者，他们是设计模式总结的先驱，看了本书之后，OO的设计模式会深入里的大脑。
+
+由于模式的粒度过大，所以不能被代码化，只是一种概念，可以说是体现在项目中的灵魂。
+
+Modern C++ Design : Generic Programming and Design Patterns Applied 《C++设计新思维》
+
+by Andrei Alexandrescu
+
+本书最近好好地研究过了，这里终于要介绍Andrei Alexandrescu了，他是Real公司的项目经理，是GP模板技术的天才，他的高深模板技术影响了BOOST以及全世界的模板怪杰，本书中他介绍他的库Loki，虽然库十分激进没有实际用途，当时展现的绚烂的特技令人叹服！同时本书是设计模式用范型实现的经典展现，以及Policy设计模式在其中的极致应用，直接影响了BOOST的adaptor设计（7个Policy）甚至影响了标准库的智能指针项目（虽然最后被否认了，当时绝对是完美的实现方法）。简称MCD。在阅读MCD之前，建议先阅读一下《C++ Template》。
+
+ 
+
+C++进阶之路（三）
+其他高级：
+
+The Design and Evolution of C++ 《C++语方的设计和演化》
+
+by Bjarne Stroustrup
+
+又是BS老大的一本，值得一看。简称D&E，内容并不艰深，Bjarne的书，仅此，就值得一读。
+《对象揭秘：Java、Eiffel和C++》
+
+by
+
+你对C++不满吗？这本书可以部分地帮你完成抱怨的目标。也许它还可以让你不迷信C++。
+
+ Imperfect C++ 《不完美的C++》
+
+by Matthew Wilson
+
+新书，本书介绍了许多新一代技术，以及C++很多有趣的技术，BS本来想把它加入C++ In Depths行列的，可惜最后说了一句：“如果本书再少一些，也许我会考虑的。”就完了，但是无论如何本书都是一本好书，值得一看。
+
+最后提一下C++ In Depths系列，这个是Bjarne Stroustrup发起的将一些比较有价值的有意义的好书归成一类的选集。这里是英文的介绍：
+
+Accelerated C++: Practical Programming by Example, Andrew Koenig and Barbara E. Moo
+
+Applied C++: Practical Techniques for Building Better Software, Philip Romanik and Amy Muntz
+
+The Boost Graph Library: User Guide and Reference Manual, Jeremy G. Siek, Lie-Quan Lee, and Andrew Lumsdaine
+
+C++ Coding Standards: 101 Rules, Guidelines, and Best Practices, Herb Sutter and Andrei Alexandrescu
+
+C++ In-Depth Box Set： Bjarne Stroustrup, Andrei Alexandrescu, Andrew Koenig, Barbara E. Moo, Stanley B. Lippman, and Herb Sutter
+
+C++ Network Programming, Volume 1: Mastering Complexity with ACE and Patterns, Douglas C. Schmidt and Stephen D. Huston
+
+C++ Network Programming, Volume 2: Systematic Reuse with ACE and Frameworks, Douglas C. Schmidt and Stephen D. Huston
+
+C++ Template Metaprogramming: Concepts, Tools, and Techniques from Boost and Beyond, David Abrahams and Aleksey Gurtovoy
+
+Essential C++, Stanley B. Lippman
+
+Exceptional C++: 47 Engineering Puzzles, Programming Problems, and Solutions, Herb Sutter
+
+Exceptional C++ Style: 40 New Engineering Puzzles, Programming Problems, and Solutions, Herb Sutter
+
+Modern C++ Design: Generic Programming and Design Patterns Applied, Andrei Alexandrescu
+
+More Exceptional C++: 40 New Engineering Puzzles, Programming Problems, and Solutions, Herb Sutter
+
+For more information, check out the series web site at www.awprofessional.com/series/indepth/

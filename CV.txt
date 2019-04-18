@@ -1,0 +1,29 @@
+ (1) 编程语言：c++, c, python, matlab
+ (2) LeetCode/ CrackInterview / 编程之美 / 数据机构&算法
+ (3) 机器学习：KNN,Decision Tree, Navie Bayes, LR, SVM, Regression, k-means,Classification and Regression Tree
+ (4) Linux & ROS
+ (5) 常规路径规划：RRT,A*,EM,Frenet-Optimal, DWA, PRM
+ (6) DDPG, DQN, MCTS, Q_learning
+ (7) Udacity CarND
+ (8) 车辆控制：PID, MPC, LQR, PurePursuit
+ (9) 车辆和无人机动力学模型 (simulink)
+
+
+
+
+Github projects:
+(1) Frent_Optimal: Udacity_Path_Planning, Pyhton_demo
+(2) DWA: Python_demo, ROS_demo
+(3) RRT: RRT_Python_demo, Udacity_Path_Planning(Debugging), OpenCV-RRT
+(4) A*: A*_Python_demo, A*_with_vehicle_model, A*_Udacity_Path_Planning, A*_cpp_demo
+(5) PRM: PRM_Python_demo, OpenCV-PRM
+(6) PID: PID_Python, PID_Udacity
+(7) Pure-Pursuit: Pure-Pursuit_Python
+(8) MPC: MPC_python, MPC_Udacity
+(9) LQR: LQR_Python
+(10) MCTS: MCTS_sum_up_to_1, MCTS_Tic_Tac_Toe
+(11) DQN: DQN_flappy_bird
+(12) Actor-Critic: Actor-Critic.py & DDPG.py
+(13) DDPG: DDPG_Torcs
+(14) Machine_Learning_In_Action: KNN,Decision_Tree,Navie-Bayes,Logistic Regression,SVM,k-means,Linear Regression,
+                                 Classification and Regression Tree
