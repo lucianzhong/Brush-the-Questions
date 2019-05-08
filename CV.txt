@@ -13,8 +13,8 @@
 
 Github projects:
 (1) Frent_Optimal: Udacity_Path_Planning, Pyhton_demo
-(2) DWA: Python_demo, ROS_demo
-(3) RRT: RRT_Python_demo, Udacity_Path_Planning(Debugging), OpenCV-RRT
+(2) DWA: Python_demo, ROS_demo,DWA_cpp
+(3) RRT: RRT_Python_demo, RRT_star, Udacity_Path_Planning(Debugging), OpenCV-RRT
 (4) A*: A*_Python_demo, A*_with_vehicle_model, A*_Udacity_Path_Planning, A*_cpp_demo
 (5) PRM: PRM_Python_demo, OpenCV-PRM
 (6) PID: PID_Python, PID_Udacity
