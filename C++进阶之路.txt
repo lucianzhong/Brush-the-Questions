@@ -163,3 +163,101 @@ Modern C++ Design: Generic Programming and Design Patterns Applied, Andrei Alexa
 More Exceptional C++: 40 New Engineering Puzzles, Programming Problems, and Solutions, Herb Sutter
 
 For more information, check out the series web site at www.awprofessional.com/series/indepth/
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+（一）语言入门:
+
+《C++ Primer》
+最新版本：第三版（第四版国外已上架，国内一些网上书店也在预订中）
+适合有丰富C经验，缺乏C++经验的。不过我个人一直认为此书带着过于强烈的C语言的痕迹，对于C++的学习未必是好事。
+
+《The C++ Programming Language》/《C++程序设计语言》
+最新版本：第三版特别版
+简称TC++PL，有其他语言的丰富经验的。（也有人简称之为“TCPL”，但需与另一本《The C Programmer Language》区分开来）
+
+《Essential C++》
+《Accelerated C++》
+这两本薄一些，都是不错的选择。《Accelerated C++》本人没有读过，从各方面的评价来看，完全值得推荐。
+
+以上几本书都有相应的中文版，而且翻译的质量都不错。上面的书未必都需要读一遍，但无论如何，TC++PL是应该阅读的。
+
+（二）进阶A：
+这个路线侧重于语言本身
+
+《Effective C++》
+最新版本：第二版（第三版国外已上架，国内一些网上书店也在预订中）
+简称EC。C++程序员必读！ 很多时候，我们说C++圣经不是指TC++PL，而是这一本。《The Pragmatic Programmer》一书中写到：“一旦你发现自己要参与C++项目的开发，赶快跑（不要走）到书店去购买Scott Mayer的《Effective C++》，可能还要《More Effective C++》”。
+
+《C++ Coding Standards: 101 Rules, Guidelines, and Best Practices》/《C++ 编程规范》
+个人认为此书应为C++程序员必备的案头书。几乎Effective系列和Exceptional系列都在这里得到了总结。最新的模版、异常的业界经验都在这里的到了体现。可能的唯一缺陷就是对一个新手而言，关于“为什么这么做”的问题，解释的不够。
+我的看法是：如果你不理解其中的条款，记忆，并且照做；如果你理解其中的条款，我猜你一定会同意书中的观点。我认为这本书中的内容至少在2009年以前都不会过时，人们将广为传诵它制定的101条戒律。
+还不知道他的简称，也许“101”会成为一个候选者？
+
+提到《Effective C++》，那么另外三本书一一浮出水面：
+《More Effective C++》
+《Exceptional C++》
+《More Exceptional C++》。
+新书《Exceptional C++ Style》也是值得一看的好书。
+上述几本书，一本也不应该放过。
+个人建议上述书籍按顺序阅读。并且，在将来反复阅读这几本书。
+
+（三）进阶B：
+这个路线侧重于程序库。
+
+《The C++ Standard Library》/《C++标准程序库—自修教程与参考手册》
+听说过STL吗？这本书会教你最基本的，也是最重要的STL的使用。这本书，应该是必读的。
+
+《Effective STL》
+会使用STL还不够，还必须知道什么时候选择什么STL组件，这是STL使用的必读书。
+
+《Generic Programming and the STL: Using and Extending the C++ Standard Template Library》/《泛型编程与STL》。
+这本书理论性较强，但是真的很严谨，而且并不是非常难懂。理解其中对于Concept的解释，将是非常重要的。
+
+《C++ STL》
+这不是讲述使用程序库的，而是讲述程序库实现原理的。肠胃不好的，需要慢慢吸收。
+
+这个路线的书，仍然是建议按顺序阅读。
+进阶A、进阶B两个路线应该是可以并行的。
+
+其他进阶参考书
+提出这些参考书，只是避免争议，也为开阔视野，笔者并不曾完全读过所有的。
+
+《Thinking in C++》/《C++编程思想》
+这本书及其中文版传言好坏都有，没有认真看过，不做评价，如果确有兴趣，不妨尝试一下该书。
+
+以下几本书基本上涉及的都是语言本身，大体上可以按照以下的顺序阅读。
+
+《C++必知必会》
+如果早一年，这本书将是重量级的，然而它被101和《Exceptional C++ Style》盖过一头。
+
+《C++ Gotchas: Avoiding Common Problems in Coding and Design》/《C++程序设计陷阱》
+这又是一本我未曾读过，而且广受好评的书。
+
+《STL 源码剖析》
+这本书我刚到手，就被人"借"走，以至于到现在也没有看过。看过这本书的朋友，可以给一个合适的评价。
+
+高级：
+《The Design and Evolution of C++》/《C++语方的设计和演化》
+简称D&E，内容并不艰深，Bjarne的书，仅此，就值得一读。
+前段时间，互动网曾8块一本（人民币）贱卖此书，现在好像没了。
+
+《Inside The C++ Object Model》/《深度探索C++对象模型》
+C程序员读后一定会觉得C++原来并不神秘。
+
+《C++ Template》
+在阅读STL、Boost或者Loki的源代码之前，请仔细阅读本书，它可以减轻一些阅读的烦恼。这本书是讨论C++模版的权威。
+
+《Modern C++ Design Generic Programming and Design Patterns Applied》/《C++设计新思维——泛型编程与设计模式之应用》
+简称MCD。在阅读MCD之前，建议先阅读一下《C++ Template》。
+
+《对象揭秘：Java、Eiffel和C++》
+你对C++不满吗？这本书可以部分地帮你完成抱怨的目标。也许它还可以让你不迷信C++。
+
+最后，一份C++标准文档也是应该加以咀嚼的。 
+还有一些书籍，并不能简单的归于C++，也难以在纯粹的书本学习中加以掌握。《Design Patterns》/《设计模式》一书就归于此类。
+
+所有上述的书籍，要么谈论C++语言本身，要么谈论STL的，要么兼而有之（当然严格讲STL也是C++语言非常重要的一部分）。偶尔，某些书中条 目也会涉及实际工程。这些书并不是C++软件开发的全部，但是他们很重要。阅读这些书，未必需要化费太多的精力，有时候是会困难，但也有时候会很快速。
+最后，编程语言并非计算机科学技术的全部，尤其对于在校的学生来说，打好基础、开阔视野都是非常重要的。
