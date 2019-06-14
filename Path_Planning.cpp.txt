@@ -1,0 +1,210 @@
+ 1. Frenet_optimal_trajectroy folder:
+
+			1. frenet_optimal_trajectory: convert the x-y coordinates to s-d coordinates
+
+										  sampling in road_width & sampling in time period & sampling in longitudinal velocity
+										  
+										  get the min cost sampling set      
+										  
+										  from the sampling set to create the 3rd or 4th polynomial curve which has a min jerk value
+										  
+										  using the polynomial curve and sampling time period to caluculate the next-time s,d,ds/dt, dd/dt
+										  
+										  convert s,d,ds/dt, dd/dt to x,y,dx/dt,dy/dt
+										  
+										  send the next-time x,y,dx/dt,dy/dtx,y,dx/dt,dy/dt to low-level controller  
+										  
+			2. cubic_spline_planner: from points to generate a 3rd curve 
+			
+			
+2. MPC
+	MPC_vehicle_control: control a car's velcity and steering angle to reach a goal point
+						 MPC can be formed as a standard formate
+						 The solver using decent gradient method to choose control inputs and solve the MPC problem   
+						 算法组成：预测模型、反馈校正、参考轨迹、滚动优化
+
+		MPC 基本原理:
+	首先指出，模型预测控制以计算机为实现手段，因此 MPC 采用采样（或离散）的控制算法。通常来说，不管该算法有何种表现方式，都遵循以下基本原理：
+	(1) 预测模型MPC是以模型为基础的控制算法，此模型称作预测模型。预测模型的作用是利用对象未来输入和历史信息预测未来输出。
+	预测模型的形式可以是状态方程、传递函数，甚至非参数模型阶跃响应和脉冲响应可作为线性稳定对象的预测模型。
+	(2) 反馈校正 MPC 是闭环控制算法，经过优化作用确定一系列未来控制作用，考虑环境干扰、模型失陪会导致控制作用对期望状态的较大偏差，一般不将控制作用全部实施，
+	  只利用本时刻的控制作用。到下一采样时刻，通过检测对象实际输出修正基于模型的预测作用，之后开始新时刻的优化，反馈校正都把优化作用建立在系统实际基础上。
+	  因此，MPC 中优化不仅基于模型，也利用反馈信息，因而构成了闭环优化。
+	(3) 滚动优化 MPC 是一种通过计算某一性能指标的极值求取未来控制作用的优化控制算法。性能指标的选取通常取为在未来采样点上跟踪某一期望轨迹方差最小：
+	  min J =sum{i=1}{p}[x(k+i|k)]{T}Q[x(k+i|k)-x_r(k+i|k)]
+	其中，x 表示优化值，x_r 表示参考轨迹，Q 表示权系数，表示对跟踪误差的抑制，P 表示优化时域，k 表示第 k 个采样时刻。
+
+		MPC 中的优化形式与一般的离散优化相比有很大的不同，不同点主要在于 MPC 优化方式是一种有限时域滚动形式的优化。
+		在采样时刻 k，性能指标时间区域只涉及到从 k 时刻到未来(k+P) 的有限时刻，到下一采样时刻(k+1) ，优化时段随之向前滚动.所以，MPC 不采用全局
+		的性能指标，在每个采样时刻对应一个优化性能指标。不同时刻优化性能指标具有相同的形式，但包含不同的时间区域。MPC 中优化是不断反复在线进行，
+		传统最优控制优化是一次离线进行，这是两者的最大不同点。
+		 
+		从上可以看出，MPC 鲜明特征是基于模型、滚动优化且包含反馈校正的计算机控制算法。
+		这种控制算法能顾及到模型误差、环境干扰不确定影响并及时校正,比一次优化更能适应实际过程，有更强鲁棒性。
+		 CVXPY是一种可以内置于Python中的模型编程语言，解决凸优化问题。它可以自动转化问题为标准形式，调用解法器，解包结果集
+		 
+		 
+		 
+3.Dynamic_window_approach: another form of sampling controller,sampling in velocity and acceleration
+         (1)在控制空间中离散采样多组速度dx,dy,dtheta
+         (2)对每个采样的速度向量dx,dy,dtheta，模拟机器人在这种速度下，预测前进一个或者多个采样时间段机器的行走轨迹以及会发生什么。
+         (3)对每个前进预测进行分析打分，choose the min cost path		 
+		 
+
+		 
+4.RRT: the sampling method
+		1.初始化起始点。比如设置机器人所在的位置为初始点；
+		2.随机生成目标点，遍历T，如果通过T能到达目标点，则路径搜索成功，扩展结束；否则继续扩展T；
+		3.挑选随机点到目标点最近的一个为Xnear;
+		4.沿着Xrand到Xnear的方向生长一段距离，生成一个新的节点Xnew
+		5.判断Xnew进行碰撞检测，如果状态非法，则本次生长结束；否则，将新的状态添加到T；
+		6.返回树结构。		 
+		 
+
+
+5. EM Planner 中的EM的含义
+	最大期望算法经过两个步骤交替进行计算，第一步是计算期望（E），利用对隐藏变量的现有估计值，计算其最大似然估计值；第二步是最大化（M），
+	最大化在E步上求得的最大似然值来计算参数的值。M步上找到的参数估计值被用于下一个E步计算中，这个过程不断交替进行。
+
+    EM Planner会迭代式的对路径和速度进行优化
+	整个路径的规划分为DP的粗糙规划，和QP的平滑规划，QP主要就是对DP的路径进行平滑处理。
+	
+    QP Cost有三个组成部分：平滑Cost，离障碍物距离Cost，离引导线偏差Cost
+	QP的Cost相对简单些，就是负责平滑的路径一阶二阶三阶倒数还有和DP结果与引导线的偏差。
+
+    速度优化和路径优化类似，也是先来DP跟着QP。
+
+    E-step: s-d frenet coordinate projection,  S-T graph projection
+	M-step: DP path planning, QP path planning, DP speed planning, QP speed planning
+
+	
+6. PRM
+	PRM是一种基于图搜索的方法，它将连续空间转换成离散空间，再利用A*等搜索算法在路线图上寻找路径，以提高搜索效率。
+	这种方法能用相对少的随机采样点来找到一个解，对多数问题而言，	相对少的样本足以覆盖大部分可行的空间，并且找到路径的概率为1（随着采样数增加，P（找到一条路径）指数的趋向于1）。
+
+	学习阶段：在给定图的自由空间里随机撒点（自定义个数），构建一个路径网络图。查询阶段：查询从一个起点到一个终点的路径。
+
+	 Roadmap is a graph G(V, E)  （无向网络图G，其中V代表随机点集，E代表所有可能的两点之间的路径集）
+	• Robot configuration q→Q_free is a vertex （每个点都要确保机器人与障碍物无碰撞）
+	• Edge (q1, q2) implies collision-free path between these robot configurations
+	• A metric is needed for d(q1,q2) (e.g. Euclidean distance)  （Dist function计算Configuration Space中点与点之间的距离，判断是否是同一个点）
+	• Uses coarse sampling of the nodes, and fine sampling of the edges
+	• Result: a roadmap in Q_free
+
+	
+7. MCTS的算法分为四步：
+第一步是Selection，就是在树中找到一个最好的值得探索的节点，一般策略是先选择未被探索的子节点，如果都探索过就选择UCB值最大的子节点
+第二步是Expansion，就是在前面选中的子节点中走一步创建一个新的子节点，一般策略是随机自行一个操作并且这个操作不能与前面的子节点重复
+第三步是Simulation，就是在前面新Expansion出来的节点开始模拟游戏，直到到达游戏结束状态，这样可以收到到这个expansion出来的节点的得分是多少
+第四步是Backpropagation，就是把前面expansion出来的节点得分反馈到前面所有父节点中，更新这些节点的quality value和visit times，方便后面计算UCB值
+
+	
+8. ros
+
+catkin_make:
+1. make folder: /home/lucian/catkin_ws/src
+2. in the folder catkin_ws: catkin_make3. source devel/setup.bash       the bin file will be in /catkin_ws/devel/lib/
+
+4. roslaunch 
+
+
+launch文件:使用launch file, 可以同时启动多个ros节点，包括ROS-master. 所以这样只要一个roslaunch,就可以启动　roscore和多个节点程序如何启动launch 文件，roslaunch package-name launch-file-name
+
+package.xml文件:package.xml实际上是一个程序包的描述文件
+
+roscpp
+roscpp位于/opt/ros/kinetic之下，用C++实现了ROS通信。在ROS中，C++的代码是通过catkin这个编译系统（扩展的CMake）来进行编译构建的。所以简单地理解，
+你也可以把roscpp就当作为一个C++的库，我们创建一个CMake工程，在其中include了roscpp等ROS的libraries，这样就可以在工程中使用ROS提供的函数了
+
+通常我们要调用ROS的C++接口，首先就需要#include <ros/ros.h>
+roscpp的主要部分包括：
+ros::init() : 解析传入的ROS参数，创建node第一步需要用到的函数
+ros::NodeHandle : 和topic、service、param等交互的公共接口
+ros::master : 包含从master查询信息的函数
+ros::this_node：包含查询这个进程(node)的函数
+ros::service：包含查询服务的函数
+ros::param：包含查询参数服务器的函数，而不需要用到NodeHandle
+ros::names：包含处理ROS图资源名称的函数
+
+#include "ros/ros.h"  //ros常用头文件
+
+ros::init(argc,argv,"move_group_interface_tutorial");//前两个参数确定，第三个参数是节点的名字，实现ros程序的参数与命令行输入的匹配
+ros::NodeHandle n;//NodeHandle 是一个主要的与Ros系统交流的访问点，第一个建立的NodeHandle初始化这个节点，最后一个摧毁的NodeHandle会关闭这个节点
+ros::AsyncSpinner spinner(1);//没看懂，问一下
+ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000); /*advertise函数用于在ros上向一个给定的话题上发布消息。这个函数返回一个Publisher对象，调用对象中的.publish()函数可以发布消息。advertise的第二个参数制定消息缓冲区的大小，可用于缓冲。"< >"内部是消息的类型，第一个参数是topic名称。*/
+ros::Rate loop_rate(10); //ros::Rate类可以制定循环的频率，本例中为10Hz
+loop_rate.sleep(); //sleep()是ros::Rate类的成员函数，使得程序休眠
+ROS_INFO("%s", msg.data.c_str());//是ros中printf的代替品
+ros::ok();//roscpp将会安装一个SIGINT监听，它使当Ctrl-C按下时，ros::ok()将会返回false。一旦ros::ok()返回false，所有的ROS调用都会失败。
+ros::spinOnce(); //ros的回调函数，会调回继续执行以后的程序
+ros::spin();//回调后不再执行原来的程序
+ros::shutdown();//会使ros::ok()置为false		 
+	 
+节点初始、关闭以及NodeHandle
+当执行一个ROS程序，就被加载到了内存中，就成为了一个进程，在ROS里叫做节点。
+每一个ROS的节点尽管功能不同，但都有必不可少的一些步骤，比如初始化、销毁，需要通行的场景通常都还需要节点的句柄。 这一节我们来学习Node最基本的一些操作
+调用了ros::init()函数，从而初始化节点的名称和其他信息，一般我们ROS程序一开始都会以这种方式开始。
+创建ros::NodeHandle对象，也就是节点的句柄，它可以用来创建Publisher、Subscriber以及做其他事情。
+
+对于一个C++写的ROS程序，之所以它区别于普通C++程序，是因为代码中做了两层工作：
+调用了ros::init()函数，从而初始化节点的名称和其他信息，一般我们ROS程序一开始都会以这种方式开始。
+创建ros::NodeHandle对象，也就是节点的句柄，它可以用来创建Publisher、Subscriber以及做其他事情。
+句柄(Handle)这个概念可以理解为一个“把手”，你握住了门把手，就可以很容易把整扇门拉开，而不必关心门是什么样子。
+NodeHandle就是对节点资源的描述，有了它你就可以操作这个节点了，比如为程序提供服务、监听某个topic上的消息、访问和修改param等等。
+
+以下是一个节点初始化、关闭的例子。
+#include<ros/ros.h>
+int main(int argc, char** argv)
+{
+    ros::init(argc, argv, "your_node_name"); 
+    ros::NodeHandle nh;
+    //....节点功能
+    //....
+    ros::spin();//用于触发topic、service的响应队列
+    return 0;
+}
+
+//创建话题的publisher 
+ros::Publisher advertise(const string &topic, uint32_t queue_size, bool latch=false); 
+
+//创建话题的subscriber
+ros::Subscriber subscribe(const string &topic, uint32_t queue_size, void(*)(M));
+
+//创建服务的server，提供服务
+ros::ServiceServer advertiseService(const string &service, bool(*srv_func)(Mreq &, Mres &));
+
+//创建服务的client
+ros::ServiceClient serviceClient(const string &service_name, bool persistent=false);
+
+在topic接收方，有一个比较重要的概念，就是回调(CallBack)，在本例中，回调就是预先给gps_info话题传来的消息准备一个回调函数，你事先定义好回调函数的操作，本例中是计算到原点的距离。
+只有当有消息来时，回调函数才会被触发执行。具体去触发的命令就是ros::spin()，它会反复的查看有没有消息来，如果有就会让回调函数去处理。
+因此千万不要认为，只要指定了回调函数，系统就回去自动触发，你必须ros::spin()或者ros::spinOnce()才能真正使回调函数生效
+
+
+#include <ros/ros.h>
+#include <topic_demo/gps.h>
+#include <std_msgs/Float32.h>
+ 
+void gpsCallback(const topic_demo::gps::ConstPtr &msg)
+{  
+    std_msgs::Float32 distance;  //计算离原点(0,0)的距离
+    distance.data = sqrt(pow(msg->x,2)+pow(msg->y,2));
+    ROS_INFO("Listener: Distance to origin = %f, state: %s",distance.data,msg->state.c_str()); //输出
+}
+ 
+int main(int argc, char **argv)
+{
+  ros::init(argc, argv, "listener");
+  ros::NodeHandle n;
+  ros::Subscriber sub = n.subscribe("gps_info", 1, gpsCallback);  //设置回调函数gpsCallback
+  ros::spin(); //ros::spin()用于调用所有可触发的回调函数，将进入循环，不会返回，类似于在循环里反复调用spinOnce() 
+              //而ros::spinOnce()只会去触发一次
+  return 0;
+
+  
+
+
+
+
+
+	
